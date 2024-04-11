@@ -11,10 +11,16 @@ test('Logo button navigates to home page', async ({ page }) =>{
 
       // Click on Older button
       await page.getByRole('link', { name: 'Older' }).click();
-      await expect(page).toHaveURL('https://test.ctypehub.galaniprojects.de/?page=442');
+      await page.evaluate(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+
+      await expect(page.getByRole('link', { name: 'Newer' })).toBeVisible();
 
       // clicking on Logo
+      await page.evaluate(() => window.scrollTo(0, 0));
       await page.getByRole('link', { name: 'CTypeHub logo' }).click();
+      
       await expect(page).toHaveURL('https://test.ctypehub.galaniprojects.de/');
 
 

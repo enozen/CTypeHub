@@ -5,9 +5,9 @@ test.describe('testing with search term "class"', () =>{
 test.beforeEach(async ({ page }) => {
     await page.goto('https://test.ctypehub.galaniprojects.de/');
     await page.getByPlaceholder('Search query').click();
-  await page.getByPlaceholder('Search query').fill('class');
-  await page.getByRole('button', { name: 'Search' }).click();
-  await page.getByRole('link', { name: 'credential_test0412-0705-' }).click();
+    await page.getByPlaceholder('Search query').fill('class');
+    await page.getByRole('button', { name: 'Search' }).click();
+    await page.getByRole('link', { name: 'credential_test0412-0705-' }).click();
   });
 
 test('Verify creator information starts with did or w3n', async ({ page}) =>{
@@ -26,17 +26,16 @@ test('Verify creator information starts with did or w3n', async ({ page}) =>{
 
 test('testing "Creator Name" with w3n', async ({ page })=>{
   await page.getByRole('link', { name: 'CTypeHub logo' }).click();
-  await page.getByRole('link', { name: 'CTypeHub logo' }).click();
   await page.getByPlaceholder('Search query').click();
-  await page.getByPlaceholder('Search query').fill('test 02');
+  await page.getByPlaceholder('Search query').fill('hendri1');
   await page.getByRole('button', { name: 'Search' }).click();
-  await page.getByRole('link', { name: 'test' }).click();
+  await page.getByRole('link', { name: 'hendri1' }).click();
 
-  const creatorInfoElement = page.getByRole('link', { name: 'w3n:nastia' });
+  const creatorInfoElement = page.getByRole('link', { name: 'w3n:hendri' });
   const creatorInfo = await creatorInfoElement.textContent();
   const pattern = /^(did:|w3n)/;
   expect(creatorInfo).toMatch(pattern);
-  await expect(creatorInfoElement).toHaveText('w3n:nastia');
+  await expect(creatorInfoElement).toHaveText('w3n:hendri');
 
 })
 

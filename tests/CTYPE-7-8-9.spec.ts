@@ -2,16 +2,17 @@ import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) =>{
     await page.goto('https://test.ctypehub.galaniprojects.de/');
-    await page.getByPlaceholder('Search query').fill('qa');
-  await page.getByRole('button', { name: 'Search' }).click();
-  await page.getByRole('link', { name: 'QA', exact: true }).click();
+    await page.getByPlaceholder('Search query').click();
+    await page.getByPlaceholder('Search query').fill('hendri');
+    await page.getByRole('button', { name: 'Search' }).click();
+    await page.getByRole('link', { name: 'hendri' }).click();
 })
 
 test('Creator link verification', async ({ page }) =>{
-    await expect(page.getByText('QACreatorw3n:nastiaNumber of')).toBeVisible();
+    await expect(page.getByText('hendriCreatorw3n:hendriNumber')).toBeVisible();
 
-    await page.getByRole('link', { name: 'w3n:nastia' }).click();
-    await expect(page).toHaveURL('https://test.w3n.id/nastia');
+    await page.getByRole('link', { name: 'w3n:hendri' }).click();
+    await expect(page).toHaveURL('https://test.w3n.id/hendri');
 })
 
 test('Transaction link verification', async ({ page }) =>{
